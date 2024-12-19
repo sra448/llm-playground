@@ -1,0 +1,16 @@
+{
+  "name": "events-etl",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "tyupe": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "description": "",
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "jsdom": "^25.0.1",
+    "xml2js": "^0.6.2"
+  }
+}

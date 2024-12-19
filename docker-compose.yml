@@ -1,0 +1,32 @@
+services:
+
+  scraper:
+    image: node:20-alpine
+    volumes:
+      - ./scraper:/app
+    working_dir: /app
+    command: >
+      sh -c "npm install && node index.mjs"
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_URL=http://ollama:11434
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "5000:11434"
+    volumes:
+      - ./ollama/.data:/root/.ollama
+      - ./ollama/modelfile.yaml:/root/.ollama/models/llama3.2/modelfile.yaml
+
+
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.10.1
+  #   environment:
+  #     - discovery.type=single-node
+  #     - xpack.security.enabled=false
+  #   ports:
+  #     - "9200:9200"
